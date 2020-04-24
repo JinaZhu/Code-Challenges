@@ -70,12 +70,14 @@ class singlyLinkedList {
   remove(index) {
     // if the index is out of range, remove the last item
     if (index >= this.length) {
-      return this.remove(this.length - 1);
+      this.length--;
+      return this.remove(this.length);
     }
     // if it's the first index, reassign the head
     if (index === 0) {
       let newHead = this.head;
       this.head = newHead.next;
+      this.length--;
       return this;
     }
     // find the previous node of the wanted node

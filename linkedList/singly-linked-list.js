@@ -89,6 +89,25 @@ class singlyLinkedList {
     this.length--;
     return this;
   }
+  reverse() {
+    // if the head is the only node
+    if (!this.head.next) {
+      return this;
+    }
+    let first = this.head;
+    let second = first.next;
+
+    while (second) {
+      // hold third item
+      const temp = second.next;
+      second.next = first;
+      first = second;
+      second = temp;
+    }
+    this.head.next = null;
+    this.head = first;
+    return this;
+  }
   traverseToIndex(index) {
     // create a counter
     let counter = 0;
@@ -127,4 +146,5 @@ myLinkedList.insert(200, 99);
 myLinkedList.insert(2, 100);
 console.log(myLinkedList.printList());
 myLinkedList.remove(0);
+myLinkedList.reverse();
 console.log(myLinkedList.printList());

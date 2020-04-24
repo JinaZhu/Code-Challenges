@@ -76,5 +76,4 @@ def cache_fibonacci(num, cache={}):
             return cache[num]
 
 
-print('55', cache_fibonacci(6))
-
+print('55', cache_fibonacci(10))

@@ -67,6 +67,26 @@ class singlyLinkedList {
     this.length++;
     return this;
   }
+  remove(index) {
+    // if the index is out of range, remove the last item
+    if (index >= this.length) {
+      return this.remove(this.length - 1);
+    }
+    // if it's the first index, reassign the head
+    if (index === 0) {
+      let newHead = this.head;
+      this.head = newHead.next;
+      return this;
+    }
+    // find the previous node of the wanted node
+    const leader = this.traverseToIndex(index - 1);
+    // store the wanted node
+    const unwantedNode = leader.next;
+    // reassign the the leader to be the the wanted item's next
+    leader.next = unwantedNode.next;
+    this.length--;
+    return this;
+  }
   traverseToIndex(index) {
     // create a counter
     let counter = 0;
@@ -103,4 +123,6 @@ myLinkedList.append(16);
 myLinkedList.prepend(1);
 myLinkedList.insert(200, 99);
 myLinkedList.insert(2, 100);
+console.log(myLinkedList.printList());
+myLinkedList.remove(0);
 console.log(myLinkedList.printList());

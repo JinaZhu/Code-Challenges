@@ -59,3 +59,22 @@ def recursive_fibonacci(num):
 
 print('55', recursive_fibonacci(10))
 
+# cache solutions:
+
+
+def cache_fibonacci(num, cache={}):
+    # if num in cache dict, return the value
+    if num in cache:
+        return cache[num]
+    # else, if num is less than 2, return num or add the sum to the dict
+    else:
+        if num < 2:
+            return num
+        else:
+            cache[num] = cache_fibonacci(
+                num-1, cache) + cache_fibonacci(num-2, cache)
+            return cache[num]
+
+
+print('55', cache_fibonacci(6))
+

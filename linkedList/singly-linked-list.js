@@ -81,4 +81,26 @@ class singlyLinkedList {
     }
     return currentNode;
   }
+  printList() {
+    // create an empty array to store the incoming values
+    const array = [];
+    // assign a variable as the holder and starts witth the head as the first item
+    let currentNode = this.head;
+    // as long as currentNode is not null
+    while (currentNode !== null) {
+      // ass the current node's value to the array
+      array.push(currentNode.value);
+      // reassign thee currentNode to the next item
+      currentNode = currentNode.next;
+    }
+    return array;
+  }
 }
+
+const myLinkedList = new singlyLinkedList(10);
+myLinkedList.append(5);
+myLinkedList.append(16);
+myLinkedList.prepend(1);
+myLinkedList.insert(200, 99);
+myLinkedList.insert(2, 100);
+console.log(myLinkedList.printList());

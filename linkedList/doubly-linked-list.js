@@ -95,7 +95,7 @@ myLinkedList.append(5);
 myLinkedList.append(16);
 myLinkedList.prepend(1);
 myLinkedList.insert(200, 99);
-myLinkedList.insert(2, 100);
+console.log(myLinkedList.insert(2, 100));
 console.log(myLinkedList.printList());
 myLinkedList.remove(0);
 console.log(myLinkedList.printList());

@@ -35,18 +35,6 @@ function mergeStrings(s1, s2) {
       newWord += newS2.shift();
     } else if (newS2.length === 0) {
       newWord += newS1.shift();
-    } else if (newS1[0] < newS2[0]) {
-      newWord += newS1.shift();
-    } else {
-      newWord += newS2.shift();
-    }
-  }
-
-  while (newS1.length !== 0 || newS2.length !== 0) {
-    if (newS1.length === 0) {
-      newWord += newS2.shift();
-    } else if (newS2.length === 0) {
-      newWord += newS1.shift();
     } else if (countS1[newS1[0]] === countS2[newS2[0]]) {
       if (newS1[0] > newS2[0]) {
         newWord += newS2.shift();
@@ -65,3 +53,30 @@ function mergeStrings(s1, s2) {
 console.log(mergeStrings("super", "tower"));
 console.log(mergeStrings("aabb", "abab"));
 console.log(mergeStrings("apple", "pie"));
+
+function alternatingSort(a) {
+  const b = [];
+  count = 0;
+
+  while (a.length !== 0) {
+    if (count % 2 === 0) {
+      b.push(a.shift());
+      count++;
+    } else {
+      b.push(a.pop());
+      count--;
+    }
+  }
+
+  let anotherB = b.slice();
+  console.log(b);
+  console.log(JSON.stringify(anotherB.sort((a, b) => a - b)));
+  if (JSON.stringify(anotherB.sort((a, b) => a - b)) === JSON.stringify(b)) {
+    return true;
+  } else {
+    return false;
+  }
+}
+
+console.log(alternatingSort([1, 3, 5, 6, 4, 2]));
+console.log(alternatingSort([1, 2, 5, 6, 4, 3]));

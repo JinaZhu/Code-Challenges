@@ -31,6 +31,7 @@ def merge_sort(lst):
 def make_merge(lst1, lst2):
     result = []
 
+    # as long as lst1 or lst2 is not empty
     while lst1 or lst2:
         if lst1 == []:
             result.append(lst2.pop(0))
@@ -45,3 +46,30 @@ def make_merge(lst1, lst2):
 
 
 print(merge_sort(notSorted))
+
+# quick sort
+
+
+def quick_sort(lst):
+    if len(lst) < 2:
+        return lst
+
+    middle = len(lst)//2
+    pivot = lst[middle]
+
+    low = []
+    high = []
+    equal = []
+
+    for item in lst:
+        if item < pivot:
+            low.append(item)
+        elif item > pivot:
+            high.append(item)
+        else:
+            equal.append(item)
+
+    return quick_sort(low) + equal + quick_sort(high)
+
+
+print(quick_sort(notSorted))

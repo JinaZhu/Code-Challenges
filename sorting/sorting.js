@@ -46,3 +46,31 @@ function makeMerge(arr1, arr2) {
 }
 
 console.log(mergeSort(notSorted));
+
+// quick sort
+
+function quickSort(arr) {
+  if (arr.length < 2) {
+    return arr;
+  }
+
+  const middle = Math.floor(arr.length / 2);
+  const pivot = arr[middle];
+
+  const low = [];
+  const high = [];
+  const equal = [];
+
+  for (let item of arr) {
+    if (item < pivot) {
+      low.push(item);
+    } else if (item > pivot) {
+      high.push(item);
+    } else {
+      equal.push(item);
+    }
+  }
+  return quickSort(low) + equal + quickSort(high);
+}
+
+console.log(quickSort(notSorted));

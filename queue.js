@@ -54,6 +54,8 @@ myQueue.enqueue("pavel");
 console.log(myQueue.enqueue("Samir"));
 console.log(myQueue.dequeue());
 
+// create a constructor with a first and last array. Everytime you add to it, you reverse the array and add to the end and everytime you take from it, you reverse and take from the end
+
 class CrazyQueue {
   constructor() {
     this.first = [];
@@ -61,15 +63,20 @@ class CrazyQueue {
   }
   enqueue(value) {
     const length = this.first.length;
+    // loop through the amount of time as the length of first
     for (let i = 0; i < length; i++) {
+      // add all item from first to last
       this.last.push(this.first.pop());
     }
+    // add the new value to the end of the last list
     this.last.push(value);
     return this;
   }
   dequeue() {
     const length = this.last.length;
+    // loop though the amount of time as the length of last
     for (let i = 0; i < length; i++) {
+      // add all item from last to first
       this.first.push(this.last.pop());
     }
     this.first.pop();

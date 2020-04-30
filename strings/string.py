@@ -14,7 +14,6 @@ def reverseP(str):
     open_bracket_int = str.rindex("(")
 
     before_bracket = str[0:open_bracket_int+1]
-
     after_bracket = str[open_bracket_int+1:]
 
     close_bracket_int = len(before_bracket) + after_bracket.find(")")
@@ -30,3 +29,5 @@ def reverseP(str):
 
 a = "(abc)d(efg)"
 print(reverse_in_parentheses(a))
+b = "foo(bar)baz"
+print(reverse_in_parentheses(b))

@@ -13,3 +13,22 @@ def num_coins(coins):
 
 
 print('num_coins', num_coins(1000))
+
+# find the area of a polygon for a given n.
+
+
+def polygon_area(num):
+    # keep track of the total number of squares
+    count = 1
+    # keep track of how many to add up from each level
+    add_on = 4
+
+    for i in range(1, num):
+        count += add_on
+        add_on += 4
+
+    return count
+
+
+print(polygon_area(3))
+print(polygon_area(100))

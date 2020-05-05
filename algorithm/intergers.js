@@ -12,3 +12,19 @@ function numCoins(coins) {
 }
 
 console.log(numCoins(100));
+
+// find the area of a polygon for a given n.
+
+function polygonArea(num) {
+  let count = 1;
+  let addOn = 4;
+
+  for (let i = 1; i < num; i++) {
+    count += addOn;
+    addOn += 4;
+  }
+  return count;
+}
+
+console.log(polygonArea(100));
+console.log(polygonArea(2));

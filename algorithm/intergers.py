@@ -30,5 +30,36 @@ def polygon_area(num):
     return count
 
 
-print(polygon_area(3))
-print(polygon_area(100))
+print('polygon_area', polygon_area(3))
+print('polygon_area', polygon_area(100))
+
+# Given an integer, convert it to a roman numeral. Input is guaranteed to be within the range from 1 to 3999.
+
+
+def int_to_roman(int):
+    roman_dict = {
+        1000: "M",
+        900: "CM",
+        500: "D",
+        100: "C",
+        90: "XC",
+        50: "L",
+        10: "X",
+        5: "V",
+        4: "IV",
+        1: "I"
+    }
+
+    result = ""
+
+    while int != 0:
+        for key in roman_dict:
+            if int >= key:
+                result += roman_dict[key]
+                int -= key
+                break
+
+    return result
+
+
+print('int_to_roman', int_to_roman(1994))

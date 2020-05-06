@@ -11,7 +11,7 @@ function numCoins(coins) {
   return result.size;
 }
 
-console.log(numCoins(100));
+console.log("numCoins", numCoins(100));
 
 // find the area of a polygon for a given n.
 
@@ -26,5 +26,42 @@ function polygonArea(num) {
   return count;
 }
 
-console.log(polygonArea(100));
-console.log(polygonArea(2));
+console.log("polygonArea", polygonArea(100));
+console.log("polygonArea", polygonArea(2));
+
+//Given an integer, convert it to a roman numeral. Input is guaranteed to be within the range from 1 to 3999.
+
+function intToRoman(num) {
+  // order matters in this case
+  const romanArr = [
+    [1000, "M"],
+    [900, "CM"],
+    [500, "D"],
+    [400, "CD"],
+    [100, "C"],
+    [90, "XC"],
+    [50, "L"],
+    [40, "XL"],
+    [10, "X"],
+    [9, "IX"],
+    [5, "V"],
+    [4, "IV"],
+    [1, "I"],
+  ];
+
+  let result = "";
+
+  while (num !== 0) {
+    // check if item is greater than num and if so, add the item's second item to the result str and subtract the num by the item's first item
+    for (const item of romanArr) {
+      if (num >= item[0]) {
+        result += item[1];
+        num -= item[0];
+        break;
+      }
+    }
+  }
+  return result;
+}
+
+console.log("intToRoman", intToRoman(1993));

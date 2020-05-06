@@ -37,6 +37,7 @@ print('polygon_area', polygon_area(100))
 
 
 def int_to_roman(int):
+    # keep track of symbols
     roman_dict = {
         1000: "M",
         900: "CM",
@@ -56,6 +57,7 @@ def int_to_roman(int):
     result = ""
 
     while int != 0:
+        # looping through the keys, check if int is greater than or equal to int and if so, add value to str and subtract int by key
         for key in roman_dict:
             if int >= key:
                 result += roman_dict[key]

@@ -69,3 +69,24 @@ def int_to_roman(int):
 
 print('int_to_roman', int_to_roman(1994))
 print('int_to_roman', int_to_roman(4))
+
+# Given a non-negative integer num, repeatedly add all its digits until the result has only one digit.
+
+
+def single_digit(num):
+
+    if num <= 9:
+        return num
+
+    while num > 9:
+        int_to_lst = list(str(num))
+        int_lst = list(map(int, int_to_lst))
+        all_sum = sum(int_lst)
+
+        num = all_sum
+
+    return num
+
+
+print('single_digit', single_digit(32))
+print('single_digit', single_digit(38))

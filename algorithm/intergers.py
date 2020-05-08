@@ -74,10 +74,10 @@ print('int_to_roman', int_to_roman(4))
 
 
 def single_digit(num):
-
+    # if num is less than 9, return the num
     if num <= 9:
         return num
-
+    # as long as the num is greater than 9, convert num into a list of strings, then convert strings into int and sum list, reassign num to be the sum
     while num > 9:
         int_to_lst = list(str(num))
         int_lst = list(map(int, int_to_lst))

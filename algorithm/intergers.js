@@ -65,3 +65,21 @@ function intToRoman(num) {
 }
 
 console.log("intToRoman", intToRoman(1993));
+
+function singleDigit(num) {
+  if (num <= 9) {
+    return num;
+  }
+
+  while (num > 9) {
+    // convert num to string to array
+    let intToArray = num.toString().split("");
+    let sum = intToArray
+      .map(Number)
+      .reduce((accumulator, currentValue) => accumulator + currentValue, 0);
+    num = sum;
+  }
+  return num;
+}
+
+console.log("singleDigit", singleDigit(38));

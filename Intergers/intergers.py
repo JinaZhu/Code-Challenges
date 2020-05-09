@@ -90,3 +90,36 @@ def single_digit(num):
 
 print('single_digit', single_digit(32))
 print('single_digit', single_digit(38))
+
+# Given a non-negative integer numRows, generate the first numRows of Pascal's triangle.
+
+# actual function
+
+
+def pascal_tri(num):
+    if num == 0:
+        return []
+    # store the first line which will always be [1] so there is something to pass in to the helper function
+    result = [[1]]
+    # as long as this length of result is less than or equal to num, call the helper function to get the next line
+    while len(result) <= num:
+        new_line = sum_line(result[-1])
+        result.append(new_line)
+
+    return result
+
+# helper function
+
+
+def sum_line(previous_line):
+    new_line = [1]
+    # loop to find the sum of the current item and previous item
+    for i in range(1, len(previous_line)):
+        sum = previous_line[i] + previous_line[i - 1]
+        new_line.append(sum)
+
+    new_line.append(1)
+    return new_line
+
+
+print('pascal_tri', pascal_tri(5))

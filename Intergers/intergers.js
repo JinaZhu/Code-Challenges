@@ -83,3 +83,32 @@ function singleDigit(num) {
 }
 
 console.log("singleDigit", singleDigit(38));
+
+// Given a non-negative integer numRows, generate the first numRows of Pascal's triangle.
+
+// actual function
+function pascalTri(num) {
+  if (num === 0) {
+    return [];
+  }
+  const result = [[1], [1, 1]];
+
+  while (result.length <= num) {
+    let newLine = sum_line(result[result.length - 1]);
+    result.push(newLine);
+  }
+  return result;
+}
+// helper function
+function sum_line(line) {
+  const newLine = [1];
+
+  for (let i = 1; i <= line.length - 1; i++) {
+    let sum = line[i] + line[i - 1];
+    newLine.push(sum);
+  }
+  newLine.push(1);
+  return newLine;
+}
+
+console.log("pascalTri", pascalTri(5));

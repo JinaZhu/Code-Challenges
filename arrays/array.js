@@ -102,3 +102,27 @@ function commonChar(wordArr) {
 
 console.log("commonChar", commonChar(["bella", "label", "roller"]));
 console.log("commonChar", commonChar(["cool", "lock", "cook"]));
+
+// An array is monotonic if it is either monotone increasing or monotone decreasing.
+
+function isMontonic(num_arr) {
+  for (let i = 0; i < num_arr.length - 1; i++) {
+    if (num_arr[0] <= num_arr[num_arr.length - 1]) {
+      if (num_arr[i] <= num_arr[i + 1]) {
+        continue;
+      } else {
+        return false;
+      }
+    }
+    if (num_arr[0] >= num_arr[num_arr.length - 1]) {
+      if (num_arr[i] >= num_arr[i + 1]) {
+        continue;
+      } else {
+        return false;
+      }
+    }
+  }
+  return true;
+}
+
+console.log("isMontonic", isMontonic([3, 4, 2, 3]));

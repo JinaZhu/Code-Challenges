@@ -17,3 +17,24 @@ def common_char(word_lst):
 
 print('common_char', common_char(
     ["bella", "label", "roller"]))
+
+# An array is monotonic if it is either monotone increasing or monotone decreasing.
+
+
+def is_monotonic(int_lst):
+    for i in range(len(int_lst)-1):
+        if int_lst[0] <= int_lst[-1]:
+            if int_lst[i] <= int_lst[i+1]:
+                continue
+            else:
+                return False
+
+        if int_lst[0] >= int_lst[-1]:
+            if int_lst[i] <= int_lst[i+1]:
+                continue
+            else:
+                return False
+        return True
+
+
+print('is_monotonic', is_monotonic([3, 4, 2, 3]))

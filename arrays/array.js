@@ -80,3 +80,23 @@ function alternatingSort(a) {
 
 console.log(alternatingSort([1, 3, 5, 6, 4, 2]));
 console.log(alternatingSort([1, 2, 5, 6, 4, 3]));
+
+// return a list of all characters that show up in all strings within the list (including duplicates).
+
+function commonChar(wordArr) {
+  let previousWord = wordArr[0].split("");
+
+  for (let i = 1; i < wordArr.length - 1; i++) {
+    let currentWord = [];
+    for (let char of wordArr[i]) {
+      if (previousWord.includes(char)) {
+        currentWord.push(char);
+        previousWord = previousWord.filter((item) => item !== char);
+      }
+    }
+    previousWord = currentWord;
+  }
+  return previousWord;
+}
+
+console.log(commonChar(["bella", "label", "roller"]));

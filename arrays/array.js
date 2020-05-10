@@ -86,12 +86,13 @@ console.log(alternatingSort([1, 2, 5, 6, 4, 3]));
 function commonChar(wordArr) {
   let previousWord = wordArr[0].split("");
 
-  for (let i = 1; i < wordArr.length - 1; i++) {
+  for (let i = 1; i < wordArr.length; i++) {
     let currentWord = [];
     for (let char of wordArr[i]) {
       if (previousWord.includes(char)) {
         currentWord.push(char);
-        previousWord = previousWord.filter((item) => item !== char);
+        let charIndex = previousWord.indexOf(char);
+        previousWord.splice(charIndex, 1);
       }
     }
     previousWord = currentWord;
@@ -99,4 +100,5 @@ function commonChar(wordArr) {
   return previousWord;
 }
 
-console.log(commonChar(["bella", "label", "roller"]));
+console.log("commonChar", commonChar(["bella", "label", "roller"]));
+console.log("commonChar", commonChar(["cool", "lock", "cook"]));

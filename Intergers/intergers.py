@@ -70,6 +70,49 @@ def int_to_roman(int):
 print('int_to_roman', int_to_roman(1994))
 print('int_to_roman', int_to_roman(4))
 
+# Given a roman numeral, convert it to an integer. Input is guaranteed to be within the range from 1 to 3999.
+
+
+def roman_to_int(roman_str):
+    roman_dict = {
+        'I': 1,
+        'IV': 4,
+        'V': 5,
+        'IX': 9,
+        'X': 10,
+        'XL': 40,
+        'L': 50,
+        'XC': 90,
+        'C': 100,
+        'CD': 400,
+        'D': 500,
+        'CM': 900,
+        'M': 1000
+    }
+
+    position_tracker = 0
+    counter = 0
+
+    while position_tracker != len(roman_str):
+        if position_tracker == len(roman_str) - 1:
+            counter += roman_dict[roman_str[position_tracker]]
+            position_tracker += 1
+            break
+        two_char = roman_str[position_tracker] + roman_str[position_tracker+1]
+        if two_char in roman_dict.keys():
+            counter += roman_dict[two_char]
+            position_tracker += 2
+        else:
+            counter += roman_dict[roman_str[position_tracker]]
+            position_tracker += 1
+
+    return counter
+
+
+print('roman_to_int', roman_to_int('LVIII'))
+print('roman_to_int', roman_to_int("MCMXCIV"))
+
+
 # Given a non-negative integer num, repeatedly add all its digits until the result has only one digit.
 
 

@@ -38,3 +38,20 @@ def is_monotonic(int_lst):
 
 
 print('is_monotonic', is_monotonic([3, 4, 2, 3]))
+
+# Given an array, rotate the array to the right by k steps, where k is non-negative.
+
+
+def rotateList(nums, steps):
+    new_nums = nums[:]
+
+    for i in range(len(nums)):
+        if i >= len(nums) - steps:
+            new_index = (i+steps) % len(nums)
+            nums[new_index] = new_nums[i]
+        else:
+            nums[i+steps] = new_nums[i]
+    return nums
+
+
+print('rotateArray', rotateArray([1, 2, 3, 4, 5, 6, 7], 3))

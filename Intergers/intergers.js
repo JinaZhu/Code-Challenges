@@ -151,3 +151,21 @@ function sum_line(line) {
 }
 
 console.log("pascalTri", pascalTri(5));
+
+// Given an array consisting of n integers, find the contiguous subarray of given length k that has the maximum average value. And you need to output the maximum average value.
+
+function findMaxAvg(arr, len) {
+  let tracker = arr.slice(0, len).reduce(function (accumulator, currentValue) {
+    return accumulator + currentValue;
+  }, 0);
+  let average = tracker / len;
+
+  for (let i = 0; i < arr.length - len; i++) {
+    tracker -= arr[i];
+    tracker += arr[i + len];
+    average = Math.max(tracker / len, average);
+  }
+  return average;
+}
+
+console.log("findMaxAvg", findMaxAvg([1, 12, -5, -6, 50, 3], 4));

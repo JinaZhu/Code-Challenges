@@ -166,3 +166,20 @@ def sum_line(previous_line):
 
 
 print('pascal_tri', pascal_tri(5))
+
+# Given an array consisting of n integers, find the contiguous subarray of given length k that has the maximum average value. And you need to output the maximum average value.
+
+
+def find_max_avg(lst, length):
+    tracker = sum(lst[:length])
+    largest_avg = tracker / length
+
+    for i in range(0, len(lst) - length):
+        tracker -= lst[i]
+        tracker += lst[i+length]
+        largest_avg = max(largest_avg, tracker/length)
+
+    return largest_avg
+
+
+print('find_max_avg', find_max_avg([1, 12, -5, -6, 50, 3], 4))

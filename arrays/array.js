@@ -126,3 +126,21 @@ function isMontonic(num_arr) {
 }
 
 console.log("isMontonic", isMontonic([3, 4, 2, 3]));
+
+// Given an array, rotate the array to the right by k steps, where k is non-negative.
+
+function rotateArray(nums, steps) {
+  newNums = [...nums];
+
+  for (let i = 0; i < nums.length; i++) {
+    if (i >= nums.length - steps) {
+      newIndex = (i + steps) % nums.length;
+      nums[newIndex] = newNums[i];
+    } else {
+      nums[i + steps] = newNums[i];
+    }
+  }
+  return nums;
+}
+
+console.log("rotateArray", rotateArray([1, 2, 3, 4, 5, 6, 7], 3));

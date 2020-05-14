@@ -82,5 +82,5 @@ def plus_one(nums):
     return nums
 
 
-print('plusOne', plusOne([1, 2, 3]))
-print('plusOne', plusOne([9, 9, 9]))
+print('plus_one', plus_one([1, 2, 3]))
+print('plus_one', plus_one([9, 9, 9]))

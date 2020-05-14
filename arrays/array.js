@@ -144,3 +144,33 @@ function rotateArray(nums, steps) {
 }
 
 console.log("rotateArray", rotateArray([1, 2, 3, 4, 5, 6, 7], 3));
+
+// Given a non-empty array of digits representing a non-negative integer, plus one to the integer.
+
+function addOne(nums) {
+  // searching backwards
+  let index = nums.length - 1;
+
+  while (index < 0) {
+    // if current item is 9, change it to 0
+    if (nums[index] === 9) {
+      nums[index] = 0;
+      index -= 1;
+    } else {
+      break;
+    }
+  }
+  // index = -1 means all number is 9
+  if (index === -1) {
+    nums[0] = 1;
+    nums.append(0);
+    return nums;
+  }
+  // increase current item
+  nums[index] += 1;
+
+  return nums;
+}
+
+console.log("addOne", addOne([1, 2, 3]));
+console.log("addOne", addOne([9, 9, 9]));

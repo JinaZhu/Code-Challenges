@@ -146,10 +146,11 @@ class BinarySearchTree {
     queue.push(currentNode);
     // as long as there is nothing left at the queue
     while (queue.length > 0) {
-      //assign currentNode to be the first item from the queue
+      //take the first item from the queue
       currentNode = queue.shift();
-      // pushing it into the list
+      // add item to the list
       list.push(currentNode.value);
+      // check item for child and add child
       if (currentNode.left) {
         queue.push(currentNode.left);
       }

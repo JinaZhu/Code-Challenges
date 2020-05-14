@@ -1,7 +1,5 @@
 // Binary Search Tree
 
-import { whitesmoke } from "color-name";
-
 class Node {
   constructor(value) {
     this.left = null;
@@ -140,6 +138,27 @@ class BinarySearchTree {
       }
     }
   }
+  breadthFirstSearch() {
+    let currentNode = this.root;
+    let list = [];
+    // queue to keep track of the level we are at the access the childreds
+    let queue = [];
+    queue.push(currentNode);
+    // as long as there is nothing left at the queue
+    while (queue.length > 0) {
+      //assign currentNode to be the first item from the queue
+      currentNode = queue.shift();
+      // pushing it into the list
+      list.push(currentNode.value);
+      if (currentNode.left) {
+        queue.push(currentNode.left);
+      }
+      if (currentNode.right) {
+        queue.push(currentNode.right);
+      }
+    }
+    return list;
+  }
 }
 
 const tree = new BinarySearchTree();
@@ -158,3 +177,5 @@ function traverse(node) {
   tree.right = node.right === null ? null : traverse(node.right);
   return tree;
 }
+
+console.log(tree.breadthFirstSearch());

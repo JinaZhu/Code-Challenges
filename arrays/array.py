@@ -55,3 +55,32 @@ def rotateList(nums, steps):
 
 
 print('rotateList', rotateList([1, 2, 3, 4, 5, 6, 7], 3))
+
+# Given a non-empty array of digits representing a non-negative integer, plus one to the integer.
+
+
+def plus_one(nums):
+    # checking backward
+    index = len(nums) - 1
+
+    while index >= 0:
+        # if the current index is 9, change it to 0
+        if nums[index] == 9:
+            nums[index] = 0
+            index -= 1
+        else:
+            break
+    # if index is -1, it means all the numbers are 9, so change first number to 1 and add another 0 to the end
+    if index == -1:
+        nums[0] = 1
+        nums.append(0)
+        return nums
+
+    # whatever the current index is, add one
+    nums[index] += 1
+
+    return nums
+
+
+print('plusOne', plusOne([1, 2, 3]))
+print('plusOne', plusOne([9, 9, 9]))

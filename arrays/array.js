@@ -151,7 +151,7 @@ function addOne(nums) {
   // searching backwards
   let index = nums.length - 1;
 
-  while (index < 0) {
+  while (index <= 0) {
     // if current item is 9, change it to 0
     if (nums[index] === 9) {
       nums[index] = 0;
@@ -163,7 +163,7 @@ function addOne(nums) {
   // index = -1 means all number is 9
   if (index === -1) {
     nums[0] = 1;
-    nums.append(0);
+    nums.push(0);
     return nums;
   }
   // increase current item
@@ -174,3 +174,4 @@ function addOne(nums) {
 
 console.log("addOne", addOne([1, 2, 3]));
 console.log("addOne", addOne([9, 9, 9]));
+console.log("addOne", addOne([9]));

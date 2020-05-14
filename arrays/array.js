@@ -151,7 +151,7 @@ function addOne(nums) {
   // searching backwards
   let index = nums.length - 1;
 
-  while (index <= 0) {
+  while (index >= 0) {
     // if current item is 9, change it to 0
     if (nums[index] === 9) {
       nums[index] = 0;

@@ -175,3 +175,29 @@ function addOne(nums) {
 console.log("addOne", addOne([1, 2, 3]));
 console.log("addOne", addOne([9, 9, 9]));
 console.log("addOne", addOne([9]));
+
+// You are given an n x n 2D matrix representing an image. Rotate the image by 90 degrees (clockwise).
+function rotate(matrix) {
+  for (let i = 0; i < matrix.length; i++) {
+    // j should start at i index
+    for (let j = i; j < matrix[i].length; j++) {
+      // store the assign item
+      let temp = matrix[i][j];
+      matrix[i][j] = matrix[j][i];
+      matrix[j][i] = temp;
+    }
+  }
+  for (let row of matrix) {
+    row.reverse();
+  }
+  return matrix;
+}
+
+console.log(
+  "rotate",
+  rotate([
+    [1, 2, 3],
+    [4, 5, 6],
+    [7, 8, 9],
+  ])
+);

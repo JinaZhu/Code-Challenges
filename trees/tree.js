@@ -138,6 +138,7 @@ class BinarySearchTree {
       }
     }
   }
+
   breadthFirstSearch() {
     let currentNode = this.root;
     let list = [];
@@ -160,6 +161,22 @@ class BinarySearchTree {
     }
     return list;
   }
+
+  breadthFirstSearchRecursive(queue, lst) {
+    // end case: if there is no items in queue, return
+    if (!queue.length) {
+      return lst;
+    }
+    let currentNode = queue.shift();
+    lst.push(currentNode.value);
+    if (currentNode.left) {
+      queue.push(currentNode.left);
+    }
+    if (currentNode.right) {
+      queue.push(currentNode.right);
+    }
+    return this.breadthFirstSearchRecursive(queue, lst);
+  }
 }
 
 const tree = new BinarySearchTree();
@@ -179,4 +196,5 @@ function traverse(node) {
   return tree;
 }
 
-console.log(tree.breadthFirstSearch());
+console.log("normal", tree.breadthFirstSearch());
+console.log("recursive", tree.breadthFirstSearchRecursive([tree.root], []));

@@ -73,8 +73,45 @@ class stackArray {
   }
 }
 
-const myStack2 = new stackArray();
-myStack2.push(1);
-myStack2.push(2);
-myStack2.push(3);
-myStack2.pop();
+// const myStack2 = new stackArray();
+// myStack2.push(1);
+// myStack2.push(2);
+// myStack2.push(3);
+// myStack2.pop();
+
+function asteroidCollision(asteroids) {
+  const stack = [];
+  let i = 0;
+
+  while (i < asteroids.length) {
+    let currentAsteroid = asteroids[i];
+    const lastItem = stack.length - 1;
+
+    // if stack is empty
+    // or last item in stack is negative
+    // or current item and last item in stack is positive
+    if (
+      stack.length === 0 ||
+      stack[lastItem] < 0 ||
+      (stack[lastItem] >= 0 && currentAsteroid >= 0)
+    ) {
+      // if so, add to the stack
+      stack.push(currentAsteroid);
+    } else {
+      // if current item and last item in stack is equal
+      if (Math.abs(currentAsteroid) === Math.abs(stack[lastItem])) {
+        // remove last item of stack
+        stack.pop();
+        // if current item is greater than last item of stack, also remove
+      } else if (Math.abs(currentAsteroid) > Math.abs(stack[lastItem])) {
+        stack.pop();
+        i--;
+      }
+    }
+    i++;
+  }
+  return stack;
+}
+
+console.log("asteroidCollision", asteroidCollision([-2, -1, 1, 2]));
+console.log("asteroidCollision", asteroidCollision([5, 10, -5]));

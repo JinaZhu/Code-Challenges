@@ -148,3 +148,9 @@ console.log(myLinkedList.printList());
 myLinkedList.remove(0);
 myLinkedList.reverse();
 console.log(myLinkedList.printList());
+
+//delete node
+function deleteNode(node){
+  node.val = node.next.val
+  node.next = node.next.next
+}

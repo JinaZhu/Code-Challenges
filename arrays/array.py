@@ -102,3 +102,75 @@ def rotate(matrix):
 
 
 print('rotate', rotate([[1, 2, 3], [4, 5, 6], [7, 8, 9]]))
+
+
+# Given an array of numbers, replace each even number with two of the same number.
+
+def duplicate_even(nums):
+    # loop through list, check for total of even nums
+    # add even total empty spaces to the end of list
+    # loop through the list backward with 2 pointers
+        # fast pointer move ahead to check each item
+        # slow pointer keep track of the location of swap position of num
+
+    total_even = 0
+    for num in nums:
+        if num % 2 == 0:
+            nums.append(-1)
+            total_even += 1
+
+    if total_even == 0:
+        return nums
+    
+    slow = len(nums) -1
+    fast = len(nums) -1
+
+    while fast >= 0:
+        if nums[fast] == -1:
+            fast -= 1
+        else: 
+            if nums[fast] % 2 == 0:
+                nums[slow] = nums[fast]
+                slow -= 1
+
+            nums[fast], nums[slow] = nums[slow], nums[fast]
+            slow -= 1
+            fast -= 1
+            
+    return nums
+
+# tescases to check: all even, all odds, single element, empty
+duplicate_even_testcase = [1,2,5,6,8]
+test_duplicate_even = duplicate_even(duplicate_even_testcase)
+test_duplicate_result = test_duplicate_even == [1,2,2,5,6,6,8,8]
+print('test_duplicate_result', test_duplicate_result)
+
+duplicate_even_testcase_2 = [1,3,5,7,9]
+test_duplicate_even_2 = duplicate_even(duplicate_even_testcase_2)
+test_duplicate_result_2 = test_duplicate_even_2 == [1,3,5,7,9]
+print('test_duplicate_result_2', test_duplicate_result_2)
+
+# Given a sentence, reverse the words of the sentence.
+
+def reverse_string(str):
+    # loop through the string with two pointer backwards
+        # fast will move to check for where the word start
+        # slow will keep track of where the word end
+
+    result = ""
+    word = ""
+
+    for char in str[::-1]:
+        if char == " ":
+            result += (word[::-1] + " ")
+            word = ""
+        else:
+            word += char
+    result += word[::-1]
+    return result
+
+reverse_string_testcase = "i live in a house"
+test_reverse_string = reverse_string(reverse_string_testcase)
+reverse_string_result = test_reverse_string == "house a in live i"
+
+print('test_reverse_string', reverse_string_result)

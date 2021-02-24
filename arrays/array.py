@@ -174,3 +174,95 @@ test_reverse_string = reverse_string(reverse_string_testcase)
 reverse_string_result = test_reverse_string == "house a in live i"
 
 print('test_reverse_string', reverse_string_result)
+
+# Given a sorted array in non-decreasing order, return an array of squares of each number, also in non-decreasing order.
+
+def square_sorted_list(lst):
+    # loop through the list with 2 pointers
+        # start pointer and end pointer
+    # square both pointer items
+    # check which pointer is smaller and append in that order
+
+    start = 0
+    end = len(lst) -1
+    change_index = len(lst) -1
+    result = [0] * (change_index+1)
+
+    while True:
+        if start == end:
+            result[change_index] = (lst[start]**2)
+            return result
+        elif abs(lst[start]) > abs(lst[end]):
+            result[change_index] = (lst[start]**2)
+            start += 1
+        else:
+            result[change_index] = (lst[end]**2)
+            end -= 1
+        change_index -= 1
+            
+# time complexity: O(n) -> only visiting items in list once
+# space complexity: O(n) -> using space for result array
+
+#cases to consider: empty list, list of 1, only positive or negative items
+square_sorted_list_testcase = [-4,-2,-1,0,3,5] 
+result_square_sorted_list = square_sorted_list(square_sorted_list_testcase)
+square_sorted_list_test = result_square_sorted_list == [0,1,4,9,16,25]
+print('square_sorted_list_test', square_sorted_list_test)
+
+square_sorted_list_testcase_2 = [-4,-2,-1] 
+result_square_sorted_list_2 = square_sorted_list(square_sorted_list_testcase_2)
+square_sorted_list_test_2 = result_square_sorted_list_2 == [1,4,16]
+print('square_sorted_list_test_2', square_sorted_list_test_2)
+
+# Given an array of integers, find the continuous subarray, which when sorted, results in the entire array being sorted.
+
+def shortest_unsorted_list(lst):
+    # loop the list twice
+        # once forward looking for the dip in the beginning
+        # once backward looking for the dip in the end
+    # find the max and min within the range
+    # expand range to cover nums that falls with max and min
+
+    front_dip = 0
+
+    for i in range(1, len(lst)):
+        if i == len(lst)-1:
+            return []
+        if lst[i] < lst[i-1]:
+            front_dip = i-1
+            break
+    
+    back_dip = 0
+    
+    for j in range(len(lst)-2, -1, -1):
+        if lst[j] < lst[j+1]:
+            back_dip = j
+            break
+    
+    subarray = lst[front_dip:back_dip+1]
+    max_of_subarray = max(subarray)
+    min_of_subarray = min(subarray)
+
+    for i in range(len(lst[:front_dip])):
+        if lst[i] > min_of_subarray:
+            front_dip = i
+    
+    for j in range(back_dip, len(lst)):
+        if lst[j] < max_of_subarray:
+            back_dip = j
+    return(lst[front_dip:back_dip+1])
+
+
+# time complexity: O(n) -> even through I have multiple loops, each loop has a time complexity of O(n)
+# space complexity: O(n) -> using space for result subarray
+
+# cases to consider: empty list, list of 1, when list is already in order
+shortest_unsorted_list_testcase = [0,2,3,1,8,6,9]
+shortest_unsorted_list_result = shortest_unsorted_list(shortest_unsorted_list_testcase)
+shortest_unsorted_list_test = shortest_unsorted_list_result == [2,3,1,8,6]
+print('shortest_unsorted_list_test', shortest_unsorted_list_test)
+
+shortest_unsorted_list_testcase_2 = [1, 2, 3, 7, 5, 6, 8, 9]
+shortest_unsorted_list_result_2 = shortest_unsorted_list(shortest_unsorted_list_testcase_2)
+shortest_unsorted_list_test_2 = shortest_unsorted_list_result_2 == [7, 5, 6, 8]
+print('shortest_unsorted_list_test_2', shortest_unsorted_list_test_2)

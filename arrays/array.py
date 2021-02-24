@@ -266,3 +266,53 @@ shortest_unsorted_list_testcase_2 = [1, 2, 3, 7, 5, 6, 8, 9]
 shortest_unsorted_list_result_2 = shortest_unsorted_list(shortest_unsorted_list_testcase_2)
 shortest_unsorted_list_test_2 = shortest_unsorted_list_result_2 == [7, 5, 6, 8]
 print('shortest_unsorted_list_test_2', shortest_unsorted_list_test_2)
+
+
+# Given an array with n marbles colored Red, White or Blue, sort them so that marbles of the same color are adjacent, with the colors in the order Red, White and Blue. Assume the colors are given as numbers - 0 (Red), 1 (White) and 2 (Blue).
+def marbles_sort(lst):
+    # loop through lst with three pointer, one at the end, one at the beginning, and one at the end
+    # make sure the end and beginning pointer current item isn't 0 or 2
+    # once begin and end is in right position move the middle pointer to swap 0s to the beginning and 2 to the end
+
+    begin = 0
+    end = len(lst) - 1
+    middle = 0
+
+    while middle <= end:
+        if lst[begin] == 0:
+            begin += 1
+            middle = begin
+            continue
+        elif lst[end] == 2:
+            end -= 1
+            continue
+
+        if lst[middle] == 0:
+            lst[begin], lst[middle] = lst[middle], lst[begin]
+            begin += 1
+            middle += 1
+        elif lst[middle] == 2:
+            lst[end], lst[middle] = lst[middle], lst[end]
+            end -= 1
+        else:
+            middle += 1
+    return lst
+
+# time complexity: O(n) -> looping through the list once
+# space complexity: O(1) -> changing the original list 
+
+# cases to consider: empty list, list with one single color
+marbles_sort_testcase = [1, 0, 1, 2, 1, 0, 1, 2]
+marbles_sort_result = marbles_sort(marbles_sort_testcase)
+marbles_sort_test = marbles_sort_result == [0, 0, 1, 1, 1, 1, 2, 2]
+print('marbles_sort_test', marbles_sort_test)
+
+marbles_sort_testcase = [0, 0, 2, 1, 2, 1, 0, 1, 2]
+marbles_sort_result = marbles_sort(marbles_sort_testcase)
+marbles_sort_test = marbles_sort_result == [0, 0, 0, 1,1, 1, 2, 2, 2]
+print('marbles_sort_test', marbles_sort_test)
+
+marbles_sort_testcase = [2, 2, 2]
+marbles_sort_result = marbles_sort(marbles_sort_testcase)
+marbles_sort_test = marbles_sort_result == [2, 2, 2]
+print('marbles_sort_test', marbles_sort_test)

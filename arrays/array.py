@@ -316,3 +316,24 @@ marbles_sort_testcase = [2, 2, 2]
 marbles_sort_result = marbles_sort(marbles_sort_testcase)
 marbles_sort_test = marbles_sort_result == [2, 2, 2]
 print('marbles_sort_test', marbles_sort_test)
+
+# Given an array of integers, return the max sum of a continous subarray
+def max_sum(nums):
+    max_sum = nums[0]
+    max_ending = nums[0]
+
+    for i in range(1, len(nums)):
+
+        current_sum = max_ending + nums[i]
+
+        max_ending = max(current_sum, nums[i])
+        max_sum = max(max_sum, max_ending)
+
+    return max_sum
+
+# time complexity: O(n) -> looping through the list once
+# space complexity: O(1) 
+max_sum_testcase = [1,2,-1,2,-3,2,-5]
+max_sum_result = max_sum(max_sum_testcase)
+max_sum_test = max_sum_result == 4
+print('max_sum_test', max_sum_test)

@@ -337,3 +337,78 @@ max_sum_testcase = [1,2,-1,2,-3,2,-5]
 max_sum_result = max_sum(max_sum_testcase)
 max_sum_test = max_sum_result == 4
 print('max_sum_test', max_sum_test)
+
+
+# Given an array of positive integers, find the contiguous subarray that sums to a given number X.
+
+def subarray_sum(nums, target):
+    if len(nums) == 0:
+        return None
+
+    slow = 0
+    fast = 0
+    total = nums[0]
+
+    while fast < len(nums):
+        if slow > fast:
+            fast = slow
+            total = nums[slow]
+        elif total < target:
+            if fast == len(nums)-1:
+                return
+            fast += 1
+            total += nums[fast]
+        elif total > target:
+            slow += 1
+            total -= nums[slow]
+        else:
+            return nums[slow:fast]
+
+# edge cases: empty array, no sum total, one element in array
+# time complexity: O(n) -> looping through the list max once
+# space complexity: O(1)   
+subarray_sum_testcase = [1,2,3,5,2] 
+subarray_sum_result = subarray_sum(subarray_sum_testcase, 8)
+subarray_sum_test = subarray_sum_result == [3,5]
+print('subarray_sum_test', subarray_sum_test)
+
+subarray_sum_testcase_2 = [1,2,3,5,2] 
+subarray_sum_result_2 = subarray_sum(subarray_sum_testcase_2, 100)
+subarray_sum_test_2 = subarray_sum_result_2 == None
+print('subarray_sum_test_2', subarray_sum_test_2)
+
+
+# Given a String, find the longest substring with unique characters.
+def unique_substring(str):
+    if not str:
+        return str
+
+    tracker = set()
+    start = 0
+    end = 0
+    result = ""
+
+    while end < len(str):
+        if str[end] in tracker:
+            tracker.remove(str[start])
+            start += 1
+        else:
+            tracker.add(str[end])
+            end += 1
+        
+        if len(tracker) > len(result):
+            result = str[start:end]
+    return result
+
+# edge cases: empty str, whole string is unique
+# time complexity: O(n) -> looping through the str once
+# space complexity: O(n) -> keep track of letters and the longest string 
+unique_substring_testcase = "whatwhywhere"
+unique_substring_result = unique_substring(unique_substring_testcase)
+unique_substring_test = unique_substring_result == "atwhy"
+print('unique_substring_test', unique_substring_test)
+
+unique_substring_testcase_2 = "helowrd"
+unique_substring_result_2 = unique_substring(unique_substring_testcase_2)
+unique_substring_test_2 = unique_substring_result_2 == "helowrd"
+print('unique_substring_test_2', unique_substring_test_2)

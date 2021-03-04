@@ -47,3 +47,39 @@ game_of_life_testcase = [[0,1,0],[0,0,1],[1,1,1],[0,0,0]]
 game_of_life_result = game_of_life(game_of_life_testcase)
 game_of_life_game_test = game_of_life_result == [[0,0,0],[1,0,1],[0,1,1],[0,1,0]]
 print('game_of_life_game_test', game_of_life_game_test)
+
+# number of islands
+# Given an m x n 2d grid map of '1's (land) and '0's (water), return the number of islands.
+# An island is surrounded by water and is formed by connecting adjacent lands horizontally or vertically. You may assume all four edges of the grid are all surrounded by water.
+
+def num_islands(grid):
+    if not grid:
+        return 0
+    
+    island_count = 0
+    
+    def check_island_surrounding(grid, i, j):
+        if i < 0 or i > len(grid) -1 or j < 0 or j > len(grid[0]) -1 or grid[i][j] == "0":
+            return 0
+        
+        grid[i][j] = "0"
+        check_island_surrounding(grid, i+1, j)
+        check_island_surrounding(grid, i-1, j)
+        check_island_surrounding(grid, i, j+1)
+        check_island_surrounding(grid, i, j-1)
+        
+        return 1
+    
+    for i in range(len(grid)):
+        for j in range(len(grid[0])):
+            if grid[i][j] == "1":
+                island_count += check_island_surrounding(grid, i, j)
+    
+    return island_count
+
+num_islands_testcase = [["1","1","1","1","0"],["1","1","0","1","0"],["1","1","0","0","0"],["0","0","0","0","0"]]
+num_island_result = num_islands(num_islands_testcase)
+num_islands_test = num_island_result == 1
+print('num_islands_test', num_islands_test)
+
+
